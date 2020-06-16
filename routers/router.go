@@ -62,4 +62,10 @@ func init() {
 
 	beego.Router("/", &controllers.HomeController{}, "*:Index")
 
+	// 环境env
+	beego.Router("/env/index", &controllers.EnvController{}, "*:Index")
+	beego.Router("/env/datagrid", &controllers.EnvController{}, "Get,Post:DataGrid")
+	beego.Router("/env/edit/?:id", &controllers.EnvController{}, "Get,Post:Edit")
+	beego.Router("/env/delete", &controllers.EnvController{}, "Post:Delete")
+
 }

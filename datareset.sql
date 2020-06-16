@@ -1,5 +1,6 @@
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
 DROP TABLE IF EXISTS `hd_backend_user`;
 CREATE TABLE `hd_backend_user`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -13,58 +14,11 @@ CREATE TABLE `hd_backend_user`  (
   `avatar` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
 INSERT INTO `hd_backend_user` VALUES (1, '超级管理员', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 0, 1, '', '', '/static/upload/admin.png');
 INSERT INTO `hd_backend_user` VALUES (3, '张三', 'zhangsan', 'e10adc3949ba59abbe56e057f20f883e', 0, 1, '', '', '');
 INSERT INTO `hd_backend_user` VALUES (5, '李四', 'lisi', 'e10adc3949ba59abbe56e057f20f883e', 0, 0, '', '', '');
-DROP TABLE IF EXISTS `hd_course`;
-CREATE TABLE `hd_course`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
-  `short_name` varchar(8) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
-  `price` double NOT NULL DEFAULT 0,
-  `real_price` double NOT NULL DEFAULT 0,
-  `img` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
-  `start_time` datetime(0) NOT NULL,
-  `end_time` datetime(0) NOT NULL,
-  `seq` int(11) NOT NULL DEFAULT 0,
-  `creator_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 36 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-INSERT INTO `hd_course` VALUES (1, '2020考研政治精讲1', '2020考研', 100, 0, '', '2019-04-30 16:00:00', '2019-05-30 16:00:00', 100, 1);
-INSERT INTO `hd_course` VALUES (2, '2020考研政治精讲2', '2020考研', 100, 0, '', '2019-04-30 16:00:00', '2019-05-30 16:00:00', 100, 1);
-INSERT INTO `hd_course` VALUES (3, '2020考研政治精讲3', '2020考研', 100, 0, '', '2019-04-30 16:00:00', '2019-05-30 16:00:00', 100, 1);
-INSERT INTO `hd_course` VALUES (4, '2020考研政治精讲3', '2020考研', 100, 0, '', '2019-04-30 16:00:00', '2019-05-30 16:00:00', 100, 1);
-INSERT INTO `hd_course` VALUES (5, '2020考研政治精讲4', '2020考研', 100, 0, '', '2019-04-30 16:00:00', '2019-05-30 16:00:00', 100, 1);
-INSERT INTO `hd_course` VALUES (6, '2020考研政治精讲5', '2020考研', 100, 0, '', '2019-04-30 16:00:00', '2019-05-30 16:00:00', 100, 1);
-INSERT INTO `hd_course` VALUES (7, '2020考研政治精讲6', '2020考研', 100, 0, '', '2019-04-30 16:00:00', '2019-05-30 16:00:00', 100, 1);
-INSERT INTO `hd_course` VALUES (8, '2020考研政治精讲7', '2020考研', 100, 0, '', '2019-04-30 16:00:00', '2019-05-30 16:00:00', 100, 1);
-INSERT INTO `hd_course` VALUES (9, '2020考研政治精讲8', '2020考研', 100, 0, '', '2019-04-30 16:00:00', '2019-05-30 16:00:00', 100, 1);
-INSERT INTO `hd_course` VALUES (10, '2020考研政治精讲9', '2020考研', 100, 0, '', '2019-04-30 16:00:00', '2019-05-30 16:00:00', 100, 1);
-INSERT INTO `hd_course` VALUES (11, '2020考研政治精讲10', '2020考研', 100, 0, '', '2019-04-30 16:00:00', '2019-05-30 16:00:00', 100, 1);
-INSERT INTO `hd_course` VALUES (12, '2020考研政治精讲11', '2020考研', 100, 0, '', '2019-04-30 16:00:00', '2019-05-30 16:00:00', 100, 1);
-INSERT INTO `hd_course` VALUES (13, '2020考研政治精讲12', '2020考研', 100, 0, '', '2019-04-30 16:00:00', '2019-05-30 16:00:00', 100, 1);
-INSERT INTO `hd_course` VALUES (14, '2020考研政治精讲13', '2020考研', 100, 0, '', '2019-04-30 16:00:00', '2019-05-30 16:00:00', 100, 1);
-INSERT INTO `hd_course` VALUES (15, '2020考研政治精讲13', '2020考研', 100, 0, '', '2019-04-30 16:00:00', '2019-05-30 16:00:00', 100, 1);
-INSERT INTO `hd_course` VALUES (16, '2020考研政治精讲15', '2020考研', 100, 0, '', '2019-04-30 16:00:00', '2019-05-30 16:00:00', 100, 1);
-INSERT INTO `hd_course` VALUES (17, '2020考研政治精讲15', '2020考研', 100, 0, '', '2019-04-30 16:00:00', '2019-05-30 16:00:00', 100, 1);
-INSERT INTO `hd_course` VALUES (18, '2020考研政治精讲15', '2020考研', 100, 0, '', '2019-04-30 16:00:00', '2019-05-30 16:00:00', 100, 1);
-INSERT INTO `hd_course` VALUES (19, '2020考研政治精讲15', '2020考研', 100, 0, '', '2019-04-30 16:00:00', '2019-05-30 16:00:00', 100, 1);
-INSERT INTO `hd_course` VALUES (20, '2020考研政治精讲15', '2020考研', 100, 0, '', '2019-04-30 16:00:00', '2019-05-30 16:00:00', 100, 1);
-INSERT INTO `hd_course` VALUES (21, '2020考研政治精讲15', '2020考研', 100, 0, '', '2019-04-30 16:00:00', '2019-05-30 16:00:00', 100, 1);
-INSERT INTO `hd_course` VALUES (22, '2020考研政治精讲15', '2020考研', 100, 0, '', '2019-04-30 16:00:00', '2019-05-30 16:00:00', 100, 1);
-INSERT INTO `hd_course` VALUES (23, '2020考研政治精讲15', '2020考研', 100, 0, '', '2019-04-30 16:00:00', '2019-05-30 16:00:00', 100, 1);
-INSERT INTO `hd_course` VALUES (24, '2020考研政治精讲15', '2020考研', 100, 0, '', '2019-04-30 16:00:00', '2019-05-30 16:00:00', 100, 1);
-INSERT INTO `hd_course` VALUES (25, '2020考研政治精讲15', '2020考研', 100, 0, '', '2019-04-30 16:00:00', '2019-05-30 16:00:00', 100, 1);
-INSERT INTO `hd_course` VALUES (26, '2020考研政治精讲15', '2020考研', 100, 0, '', '2019-04-30 16:00:00', '2019-05-30 16:00:00', 100, 1);
-INSERT INTO `hd_course` VALUES (27, '2020考研政治精讲15', '2020考研', 100, 0, '', '2019-04-30 16:00:00', '2019-05-30 16:00:00', 100, 1);
-INSERT INTO `hd_course` VALUES (28, '2020考研政治精讲15', '2020考研', 100, 0, '', '2019-04-30 16:00:00', '2019-05-30 16:00:00', 100, 1);
-INSERT INTO `hd_course` VALUES (29, '2020考研政治精讲15', '2020考研', 100, 0, '', '2019-04-30 16:00:00', '2019-05-30 16:00:00', 100, 1);
-INSERT INTO `hd_course` VALUES (30, '2020考研政治精讲15', '2020考研', 100, 0, '', '2019-04-30 16:00:00', '2019-05-30 16:00:00', 100, 1);
-INSERT INTO `hd_course` VALUES (31, '2020考研政治精讲15', '2020考研', 100, 0, '', '2019-04-30 16:00:00', '2019-05-30 16:00:00', 100, 1);
-INSERT INTO `hd_course` VALUES (32, '2020考研政治精讲15', '2020考研', 100, 0, '', '2019-04-30 16:00:00', '2019-05-30 16:00:00', 100, 1);
-INSERT INTO `hd_course` VALUES (33, '2020考研政治精讲15', '2020考研', 100, 0, '', '2019-04-30 16:00:00', '2019-05-30 16:00:00', 100, 1);
-INSERT INTO `hd_course` VALUES (34, '2020考研政治精讲15', '2020考研', 100, 0, '', '2019-04-30 16:00:00', '2019-05-30 16:00:00', 100, 1);
-INSERT INTO `hd_course` VALUES (35, '2020考研政治精讲15', '2020考研', 100, 0, '', '2019-04-30 16:00:00', '2019-05-30 16:00:00', 100, 1);
+
 DROP TABLE IF EXISTS `hd_resource`;
 CREATE TABLE `hd_resource`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -76,6 +30,7 @@ CREATE TABLE `hd_resource`  (
   `url_for` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 38 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
 INSERT INTO `hd_resource` VALUES (7, 1, '权限管理', 8, 100, 'fa fa-balance-scale', '');
 INSERT INTO `hd_resource` VALUES (8, 0, '系统菜单', NULL, 200, '', '');
 INSERT INTO `hd_resource` VALUES (9, 1, '资源管理', 7, 100, '', 'ResourceController.Index');
@@ -95,6 +50,7 @@ INSERT INTO `hd_resource` VALUES (32, 2, '分配资源', 12, 100, 'fa fa-th', 'R
 INSERT INTO `hd_resource` VALUES (35, 1, ' 首页', NULL, 100, 'fa fa-dashboard', 'HomeController.Index');
 INSERT INTO `hd_resource` VALUES (36, 2, '编辑', 22, 100, '', 'CourseController.Edit');
 INSERT INTO `hd_resource` VALUES (37, 2, '删除', 22, 100, '', 'CourseController.Delete');
+
 DROP TABLE IF EXISTS `hd_role`;
 CREATE TABLE `hd_role`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -102,9 +58,11 @@ CREATE TABLE `hd_role`  (
   `seq` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 26 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
 INSERT INTO `hd_role` VALUES (22, '超级管理员', 20);
 INSERT INTO `hd_role` VALUES (24, '角色管理员', 10);
 INSERT INTO `hd_role` VALUES (25, '课程资源管理员', 5);
+
 DROP TABLE IF EXISTS `hd_role_backenduser_rel`;
 CREATE TABLE `hd_role_backenduser_rel`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -113,8 +71,10 @@ CREATE TABLE `hd_role_backenduser_rel`  (
   `created` datetime(0) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 67 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
 INSERT INTO `hd_role_backenduser_rel` VALUES (61, 22, 1, '2017-12-18 07:35:58');
 INSERT INTO `hd_role_backenduser_rel` VALUES (66, 25, 3, '2017-12-19 06:40:34');
+
 DROP TABLE IF EXISTS `hd_role_resource_rel`;
 CREATE TABLE `hd_role_resource_rel`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -123,6 +83,7 @@ CREATE TABLE `hd_role_resource_rel`  (
   `created` datetime(0) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 474 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
 INSERT INTO `hd_role_resource_rel` VALUES (448, 24, 8, '2017-12-19 06:40:16');
 INSERT INTO `hd_role_resource_rel` VALUES (449, 24, 14, '2017-12-19 06:40:16');
 INSERT INTO `hd_role_resource_rel` VALUES (450, 24, 23, '2017-12-19 06:40:16');
@@ -149,4 +110,5 @@ INSERT INTO `hd_role_resource_rel` VALUES (470, 22, 32, '2019-05-11 13:57:51');
 INSERT INTO `hd_role_resource_rel` VALUES (471, 22, 13, '2019-05-11 13:57:51');
 INSERT INTO `hd_role_resource_rel` VALUES (472, 22, 26, '2019-05-11 13:57:51');
 INSERT INTO `hd_role_resource_rel` VALUES (473, 22, 29, '2019-05-11 13:57:51');
+
 SET FOREIGN_KEY_CHECKS = 1;

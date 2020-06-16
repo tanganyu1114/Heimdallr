@@ -1,0 +1,56 @@
+<form id="thisForm">
+    <input type="hidden" name="Id" id="Id" value="{{.m.Id}}">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>环境名</label>
+                <input type="text" name="EnvName" class="form-control" placeholder="长度不超过8" value="{{.m.EnvName}}">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>环境描述</label>
+                <input type="text" name="EnvDescript" class="form-control" placeholder="长度不超过32" value="{{.m.EnvDescript}}">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>IP地址</label>
+                <input type="text" name="Ipaddr" class="form-control" placeholder="" value="{{.m.Ipaddr}}">
+            </div>
+        </div> 
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>端口</label>
+                <input type="text" name="Port" class="form-control" placeholder="" value="{{.m.Port}}">
+            </div>
+        </div>       
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>密钥</label>
+                <input type="text" name="Token" class="form-control" placeholder="" value="{{.m.Token}}">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>动态地址</label>
+                <input type="text" name="RelationPath" class="form-control" placeholder="" value="{{.m.RelationPath}}">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>状态</label>
+                <select name="Status" id="Status" class="form-control bs-select">
+                    <option value="1">启用</option>
+                    <option value="0">禁用</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</form>

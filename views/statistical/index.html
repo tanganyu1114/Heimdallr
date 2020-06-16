@@ -1,0 +1,104 @@
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <br><h3 class="mb-4">信息概览</h3>
+        <!--http and stream 模块信息 start -->
+        <div class="row">
+            <div class="col-md-3">
+                <!-- Widget: user widget style 2 -->
+                <div class="card card-widget widget-user-2">
+                    <!-- Add the bg color to the header using any of the bg-* classes -->
+                    <div class="widget-user-header bg-success">
+                        <h3>系统信息</h3>
+                    </div>
+                    <div class="card-footer p-1">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    时间 <span id="time" class="float-right badge bg-primary"></span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    系统 <span class="float-right badge bg-primary">{{.Info.Osinfo}}</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    CPU <span class="float-right badge bg-info">{{.Info.Cpu}}%</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    内存 <span class="float-right badge bg-success">{{.Info.Mem}}%</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    磁盘 <span class="float-right badge bg-success">{{.Info.Disk}}%</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <!-- Widget: user widget style 2 -->
+                <div class="card card-widget widget-user-2">
+                    <!-- Add the bg color to the header using any of the bg-* classes -->
+                    <div class="widget-user-header bg-info">
+
+                        <!-- /.widget-user-image -->
+                        <h3>http模块信息</h3>
+                    </div>
+                    <div class="card-footer p-1">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    Server <span class="float-right badge bg-primary">{{.NgInfo.HttpSvrsNum}}</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    Location <span class="float-right badge bg-info">{{.NgInfo.LocationNum}}</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    Port <span class="float-right badge bg-success">{{.NgInfo.HttpPortNum}}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <!-- Widget: user widget style 2 -->
+                <div class="card card-widget widget-user-2">
+                    <!-- Add the bg color to the header using any of the bg-* classes -->
+                    <div class="widget-user-header bg-warning">
+
+                        <!-- /.widget-user-image -->
+                        <h3>stream模块信息</h3>
+                    </div>
+                    <div class="card-footer p-1">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    Server <span class="float-right badge bg-primary">{{.NgInfo.StreamSvrsNum}}</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    Port <span class="float-right badge bg-success">{{.NgInfo.StreamPortNum}}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--http and stream 模块信息 start -->
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
