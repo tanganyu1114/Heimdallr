@@ -47,7 +47,7 @@ INSERT INTO `hd_resource` VALUES (29, 2, '删除', 13, 100, 'fa fa-trash', 'Back
 INSERT INTO `hd_resource` VALUES (30, 2, '编辑', 12, 100, 'fa fa-pencil', 'RoleController.Edit');
 INSERT INTO `hd_resource` VALUES (31, 2, '删除', 12, 100, 'fa fa-trash', 'RoleController.Delete');
 INSERT INTO `hd_resource` VALUES (32, 2, '分配资源', 12, 100, 'fa fa-th', 'RoleController.Allocate');
-INSERT INTO `hd_resource` VALUES (35, 1, ' 首页', NULL, 100, 'fa fa-dashboard', 'HomeController.Index');
+INSERT INTO `hd_resource` VALUES (35, 1, ' 首页', NULL, 100, 'fa fa-dashboard', 'StatisticalController.Index');
 INSERT INTO `hd_resource` VALUES (36, 2, '编辑', 22, 100, '', 'CourseController.Edit');
 INSERT INTO `hd_resource` VALUES (37, 2, '删除', 22, 100, '', 'CourseController.Delete');
 

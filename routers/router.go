@@ -9,12 +9,12 @@ import (
 func init() {
 
 	//课程路由
-	beego.Router("/course/index", &controllers.CourseController{}, "*:Index")
-	beego.Router("/course/datagrid", &controllers.CourseController{}, "Get,Post:DataGrid")
-	beego.Router("/course/edit/?:id", &controllers.CourseController{}, "Get,Post:Edit")
-	beego.Router("/course/delete", &controllers.CourseController{}, "Post:Delete")
-	beego.Router("/course/updateseq", &controllers.CourseController{}, "Post:UpdateSeq")
-	beego.Router("/course/uploadimage", &controllers.CourseController{}, "Post:UploadImage")
+	/*	beego.Router("/course/index", &controllers.CourseController{}, "*:Index")
+		beego.Router("/course/datagrid", &controllers.CourseController{}, "Get,Post:DataGrid")
+		beego.Router("/course/edit/?:id", &controllers.CourseController{}, "Get,Post:Edit")
+		beego.Router("/course/delete", &controllers.CourseController{}, "Post:Delete")
+		beego.Router("/course/updateseq", &controllers.CourseController{}, "Post:UpdateSeq")
+		beego.Router("/course/uploadimage", &controllers.CourseController{}, "Post:UploadImage")*/
 
 	//用户角色路由
 	beego.Router("/role/index", &controllers.RoleController{}, "*:Index")
@@ -51,7 +51,7 @@ func init() {
 	beego.Router("/usercenter/uploadimage", &controllers.UserCenterController{}, "Post:UploadImage")
 	beego.Router("/usercenter/passwordsave", &controllers.UserCenterController{}, "Post:PasswordSave")
 
-	beego.Router("/home/index", &controllers.HomeController{}, "*:Index")
+	//beego.Router("/home/index", &controllers.HomeController{}, "*:Index")
 	beego.Router("/home/login", &controllers.HomeController{}, "*:Login")
 	beego.Router("/home/dologin", &controllers.HomeController{}, "Post:DoLogin")
 	beego.Router("/home/logout", &controllers.HomeController{}, "*:Logout")
@@ -67,5 +67,8 @@ func init() {
 	beego.Router("/env/datagrid", &controllers.EnvController{}, "Get,Post:DataGrid")
 	beego.Router("/env/edit/?:id", &controllers.EnvController{}, "Get,Post:Edit")
 	beego.Router("/env/delete", &controllers.EnvController{}, "Post:Delete")
+
+	// nginx 信息统计页面
+	beego.Router("nga/index", &controllers.StatisticalController{}, "*:Index")
 
 }
