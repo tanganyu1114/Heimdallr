@@ -2,6 +2,9 @@ package controllers
 
 import (
 	"fmt"
+	"github.com/astaxie/beego/logs"
+	"github.com/astaxie/beego/orm"
+	"net/url"
 	"strings"
 
 	"Heimdallr/enums"
@@ -185,4 +188,27 @@ func (c *BaseController) pageLogin() {
 	url := c.URLFor("HomeController.Login")
 	c.Redirect(url, 302)
 	c.StopRun()
+}
+
+// 获取请求信息cookie中的环境信息
+func (c *BaseController) EnvCookie() (*models.Env, bool) {
+	var m models.Env
+	var b bool = true
+	e := c.Ctx.GetCookie("env")
+	res, err := url.QueryUnescape(e)
+	if err != nil {
+		b = false
+		logs.Error(err)
+	}
+	if res == "环境选择" {
+		b = false
+	}
+	if b {
+		err := orm.NewOrm().QueryTable(models.EnvTBName()).Filter("EnvName", res).One(&m)
+		if err != nil {
+			b = false
+			logs.Error(err)
+		}
+	}
+	return &m, b
 }

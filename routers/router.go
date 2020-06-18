@@ -71,4 +71,7 @@ func init() {
 	// nginx 信息统计页面
 	beego.Router("nga/index", &controllers.StatisticalController{}, "*:Index")
 
+	// nginx 信息详情页面
+	beego.Router("nga/detail", &controllers.DetailController{}, "*:Index")
+
 }

@@ -27,11 +27,6 @@ func init() {
 	cpt.StdWidth = 120
 }
 
-func (c *HomeController) Index() {
-	//判断是否登录
-	c.checkLogin()
-	c.setTpl()
-}
 func (c *HomeController) Page404() {
 	c.setTpl()
 }
@@ -52,10 +47,10 @@ func (c *HomeController) DoLogin() {
 	cptstr := strings.TrimSpace(c.GetString("CaptCha"))
 	cptid := strings.TrimSpace(c.GetString("captcha_id"))
 	// 验证码验证
-	if !cpt.Verify(cptid,cptstr) {
+	if !cpt.Verify(cptid, cptstr) {
 		c.jsonResult(enums.JRCodeFailed, "验证码错误", "")
 	}
-/*	if !cpt.VerifyReq(c.Ctx.Request) {
+	/*	if !cpt.VerifyReq(c.Ctx.Request) {
 		c.jsonResult(enums.JRCodeFailed, "验证码错误", "")
 	}*/
 

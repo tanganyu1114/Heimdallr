@@ -3,14 +3,10 @@ package controllers
 import (
 	"Heimdallr/models"
 	"fmt"
-	"github.com/astaxie/beego/logs"
-	"github.com/astaxie/beego/orm"
 	"github.com/shirou/gopsutil/cpu"
 	"github.com/shirou/gopsutil/disk"
 	"github.com/shirou/gopsutil/host"
 	"github.com/shirou/gopsutil/mem"
-	"html"
-	"net/url"
 	"time"
 )
 
@@ -78,26 +74,13 @@ func (c *StatisticalController) confInfo(m *models.Env) {
 
 func (c *StatisticalController) Index() {
 
-	var m models.Env
-	m.EnvName = c.Ctx.GetCookie("env")
-	fmt.Println(m.EnvName)
-	//url.QueryUnescape(m.EnvName)
-	fmt.Println(html.UnescapeString(m.EnvName))
-	um, err := url.QueryUnescape(m.EnvName)
-	if err != nil {
-		logs.Error(err)
-	}
-	m.EnvName = um
-
-	if m.EnvName != "" {
-		err := orm.NewOrm().QueryTable(models.EnvTBName()).Filter("EnvName", m.EnvName).One(&m)
-		if err != nil {
-			logs.Error(err)
-		}
-	}
-	fmt.Println("env info: \n", m)
+	// 获取系统信息
 	c.sysInfo()
-	c.confInfo(&m)
+	// 获取nginx统计信息
+	m, b := c.EnvCookie()
+	if b {
+		c.confInfo(m)
+	}
 
 	c.Data["activeSidebarUrl"] = c.URLFor(c.controllerName + "." + c.actionName)
 	c.setTpl()

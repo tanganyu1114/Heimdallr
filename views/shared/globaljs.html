@@ -48,9 +48,10 @@
             }
         );
         if ($.cookie('env') === undefined) {
-            $('#envname').text("环境选择")
+            $.cookie('env',encodeURI("环境选择"),{ expires: 7, path: '/' });
+            $('#envname').text("环境选择");
         }else {
             $('#envname').text(decodeURI($.cookie('env')))
-        }
+        };
     })
 </script>
