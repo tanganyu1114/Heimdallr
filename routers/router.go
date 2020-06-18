@@ -60,7 +60,7 @@ func init() {
 	beego.Router("/home/404", &controllers.HomeController{}, "*:Page404")
 	beego.Router("/home/error/?:error", &controllers.HomeController{}, "*:Error")
 
-	beego.Router("/", &controllers.HomeController{}, "*:Index")
+	//beego.Router("/", &controllers.HomeController{}, "*:Index")
 
 	// 环境env
 	beego.Router("/env/index", &controllers.EnvController{}, "*:Index")
