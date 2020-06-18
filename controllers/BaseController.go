@@ -23,6 +23,8 @@ func (c *BaseController) Prepare() {
 	c.controllerName, c.actionName = c.GetControllerAndAction()
 	//从Session里获取数据 设置用户信息
 	c.adapterUserInfo()
+	// 获取环境信息动态生成env btn
+	// c.adapterEnvBtn()
 }
 
 // checkLogin判断用户是否登录，未登录则跳转至登录页面
@@ -109,6 +111,19 @@ func (c *BaseController) adapterUserInfo() {
 		c.Data["backenduser"] = a
 	}
 }
+
+/*func (c *BaseController)adapterEnvBtn()  {
+	//直接反序化获取json格式的requestbody里的值（要求配置文件里 copyrequestbody=true）
+	var params models.EnvQueryParam
+	//获取数据列表和总数
+	data, total := models.EnvPageList(&params)
+	//定义返回的数据结构
+	result := make(map[string]interface{})
+	result["total"] = total
+	result["rows"] = data
+	c.Data["json"] = result
+	c.ServeJSON()
+}*/
 
 //SetBackendUser2Session 获取用户信息（包括资源UrlFor）保存至Session
 func (c *BaseController) setBackendUser2Session(userId int) error {

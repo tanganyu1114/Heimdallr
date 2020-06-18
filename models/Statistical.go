@@ -7,17 +7,6 @@ import (
 	"github.com/astaxie/beego/logs"
 )
 
-type Request struct {
-	Ipaddr string
-	Port   string
-	Token  string
-}
-
-type NgConfRes struct {
-	Message string
-	Status  string
-}
-
 type StatisticsResult struct {
 	Message StatisticsMsg `json:"message"`
 	Status  string        `json:"status"`
@@ -32,31 +21,12 @@ type StatisticsMsg struct {
 	StreamSvrsNum int      `json:"streamSvrsNum, omitempty"`
 }
 
-var Req Request
-
-func GetAllConf() *string {
-	var n NgConfRes
-	url := fmt.Sprintf("http://%s:%s/ng_conf", Req.Ipaddr, Req.Port)
-
-	req := httplib.Get(url)
-	req.Param("token", Req.Token)
-	req.Param("type", "string")
-
-	b, err := req.Bytes()
-	if err != nil {
-		logs.Error(err)
-	}
-	json.Unmarshal(b, &n)
-	return &n.Message
-
-}
-
-func GetStatistics() *StatisticsMsg {
+func GetStatistics(m *Env) *StatisticsMsg {
 	var s StatisticsResult
-	url := fmt.Sprintf("http://%s:%s/ng_conf/statistics", Req.Ipaddr, Req.Port)
+	url := fmt.Sprintf("http://%s:%d/%s/statistics", m.Ipaddr, m.Port, m.RelationPath)
 
 	req := httplib.Get(url)
-	req.Param("token", Req.Token)
+	req.Param("token", m.Token)
 
 	b, err := req.Bytes()
 	if err != nil {

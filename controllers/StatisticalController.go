@@ -3,10 +3,14 @@ package controllers
 import (
 	"Heimdallr/models"
 	"fmt"
+	"github.com/astaxie/beego/logs"
+	"github.com/astaxie/beego/orm"
 	"github.com/shirou/gopsutil/cpu"
 	"github.com/shirou/gopsutil/disk"
 	"github.com/shirou/gopsutil/host"
 	"github.com/shirou/gopsutil/mem"
+	"html"
+	"net/url"
 	"time"
 )
 
@@ -55,9 +59,9 @@ func (c *StatisticalController) sysInfo() {
 	c.Data["Info"] = info
 }
 
-func (c *StatisticalController) confInfo() {
+func (c *StatisticalController) confInfo(m *models.Env) {
 
-	s := models.GetStatistics()
+	s := models.GetStatistics(m)
 	nginfo := map[string]interface{}{
 		"HttpPorts":     s.HttpPorts,
 		"HttpPortNum":   len(s.HttpPorts),
@@ -73,9 +77,27 @@ func (c *StatisticalController) confInfo() {
 }
 
 func (c *StatisticalController) Index() {
-	//c.isLoginOn()
+
+	var m models.Env
+	m.EnvName = c.Ctx.GetCookie("env")
+	fmt.Println(m.EnvName)
+	//url.QueryUnescape(m.EnvName)
+	fmt.Println(html.UnescapeString(m.EnvName))
+	um, err := url.QueryUnescape(m.EnvName)
+	if err != nil {
+		logs.Error(err)
+	}
+	m.EnvName = um
+
+	if m.EnvName != "" {
+		err := orm.NewOrm().QueryTable(models.EnvTBName()).Filter("EnvName", m.EnvName).One(&m)
+		if err != nil {
+			logs.Error(err)
+		}
+	}
+	fmt.Println("env info: \n", m)
 	c.sysInfo()
-	c.confInfo()
+	c.confInfo(&m)
 
 	c.Data["activeSidebarUrl"] = c.URLFor(c.controllerName + "." + c.actionName)
 	c.setTpl()
@@ -86,3 +108,10 @@ func (c *StatisticalController) Index() {
 	//c.Data["canEdit"] = c.checkActionAuthor("CourseController", "Edit")
 	//c.Data["canDelete"] = c.checkActionAuthor("CourseController", "Delete")
 }
+
+// 可以通过修改底层url.QueryEscape代码获得更高的效率，很简单
+/*func encodeURIComponent(str string) string {
+	r := url.QueryEscape(str)
+	r = strings.Replace(r, "+", "%20", -1)
+	return r
+}*/
