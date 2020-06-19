@@ -22,7 +22,7 @@ func InitLogs() {
 	consoleLogs.Async() //异步
 	fileLogs = logs.NewLogger(10000)
 	level := beego.AppConfig.String("logs::level")
-	fileLogs.SetLogger(logs.AdapterMultiFile, `{"filename":"logs/rms.log",
+	fileLogs.SetLogger(logs.AdapterMultiFile, `{"filename":"logs/heimdallr.log",
 		"separate":["emergency", "alert", "critical", "error", "warning", "notice", "info", "debug"],
 		"level":`+level+`,
 		"daily":true,
