@@ -26,14 +26,16 @@
         $.post({{urlfor "EnvController.DataGrid"}},function (res) {
             //console.log(res["rows"])
             $.each(res["rows"],function (i,item) {
-                var btns = $("<button></button>").attr({
-                    type: "button",
-                    name: "env_one",
-                    class: "btn btn-block btn-primary",
-                    id: item["EnvName"],
-                    title: item["EnvDescript"],
+                if (item["Status"] == true) {
+                    var btns = $("<button></button>").attr({
+                        type: "button",
+                        name: "env_one",
+                        class: "btn btn-block btn-primary",
+                        id: item["EnvName"],
+                        title: item["EnvDescript"],
                     }).text(item["EnvName"])
-                $("#envs").append(btns)
+                    $("#envs").append(btns)
+                }
             })
         });
 

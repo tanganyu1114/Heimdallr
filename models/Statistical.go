@@ -21,6 +21,7 @@ type StatisticsMsg struct {
 	StreamSvrsNum int      `json:"streamSvrsNum, omitempty"`
 }
 
+// TODO: 1.设置请求bifrost超时
 func GetStatistics(m *Env) *StatisticsMsg {
 	var s StatisticsResult
 	url := fmt.Sprintf("http://%s:%d/%s/statistics", m.Ipaddr, m.Port, m.RelationPath)

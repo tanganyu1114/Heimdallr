@@ -12,6 +12,7 @@ type NgConfResult struct {
 	Status  string
 }
 
+// TODO: 1.设置请求bifrost超时
 func GetDetail(m *Env) *string {
 	var n NgConfResult
 	url := fmt.Sprintf("http://%s:%d/%s", m.Ipaddr, m.Port, m.RelationPath)

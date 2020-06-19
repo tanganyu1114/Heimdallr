@@ -9,3 +9,15 @@
 hljs.initHighlightingOnLoad();
 hljs.initLineNumbersOnLoad();
 </script>
+<!-- 定义scroll高度 -->
+<script>
+    var hi = $(window).height()
+    $(function () {
+        s = Math.round(hi * 0.76)
+        console.log(s)
+        $("code").css({
+            "height":s,
+            "overflow-y":"auto"
+        })
+    });
+</script>
