@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"Heimdallr/models"
 	"fmt"
 	"github.com/shirou/gopsutil/cpu"
 	"github.com/shirou/gopsutil/disk"
@@ -20,10 +19,10 @@ func (c *StatisticalController) Prepare() {
 	//先执行
 	c.BaseController.Prepare()
 	//如果一个Controller的多数Action都需要权限控制，则将验证放到Prepare
-	c.checkAuthor("DataGrid", "DataList", "UpdateSeq", "UploadImage")
+	//c.checkAuthor("DataGrid", "DataList", "UpdateSeq", "UploadImage")
 	//如果一个Controller的所有Action都需要登录验证，则将验证放到Prepare
 	//权限控制里会进行登录验证，因此这里不用再作登录验证
-	//c.checkLogin()
+	c.checkLogin()
 }
 
 // index page infomation
@@ -55,32 +54,10 @@ func (c *StatisticalController) sysInfo() {
 	c.Data["Info"] = info
 }
 
-func (c *StatisticalController) confInfo(m *models.Env) {
-
-	s := models.GetStatistics(m)
-	nginfo := map[string]interface{}{
-		"HttpPorts":     s.HttpPorts,
-		"HttpPortNum":   len(s.HttpPorts),
-		"HttpSvrNames":  s.HttpSvrNames,
-		"HttpSvrsNum":   s.HttpSvrsNum,
-		"LocationNum":   s.LocNum,
-		"StreamPorts":   s.HttpPorts,
-		"StreamPortNum": len(s.StreamPorts),
-		"StreamSvrsNum": s.StreamSvrsNum,
-	}
-
-	c.Data["NgInfo"] = nginfo
-}
-
 func (c *StatisticalController) Index() {
 
 	// 获取系统信息
 	c.sysInfo()
-	// 获取nginx统计信息
-	m, b := c.EnvCookie()
-	if b {
-		c.confInfo(m)
-	}
 
 	c.Data["activeSidebarUrl"] = c.URLFor(c.controllerName + "." + c.actionName)
 	c.setTpl()
@@ -91,10 +68,3 @@ func (c *StatisticalController) Index() {
 	//c.Data["canEdit"] = c.checkActionAuthor("CourseController", "Edit")
 	//c.Data["canDelete"] = c.checkActionAuthor("CourseController", "Delete")
 }
-
-// 可以通过修改底层url.QueryEscape代码获得更高的效率，很简单
-/*func encodeURIComponent(str string) string {
-	r := url.QueryEscape(str)
-	r = strings.Replace(r, "+", "%20", -1)
-	return r
-}*/

@@ -14,7 +14,6 @@
 </section>
 <!-- Main content -->
 <section class="container-fluid">
-
         <!--系统信息 start -->
         <div class="row" style="padding-top: 20px">
             <div class="col-md-3">
@@ -94,64 +93,5 @@
                 </div>
             </div>
         </div>
-        <!--nginx 统计信息 -->
-        <div class="row" style="padding-top: 40px">
-            <div class="col-md-3">
-                <!-- Widget: user widget style 2 -->
-                <div class="card card-widget widget-user-2">
-                    <!-- Add the bg color to the header using any of the bg-* classes -->
-                    <div class="widget-user-header bg-blue">
-
-                        <!-- /.widget-user-image -->
-                        <h3>http模块信息</h3>
-                    </div>
-                    <div class="card-footer p-1">
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    Server <span class="pull-right label bg-blue">{{.NgInfo.HttpSvrsNum}}</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    Location <span class="pull-right label bg-green">{{.NgInfo.LocationNum}}</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    Port <span class="pull-right label bg-green">{{.NgInfo.HttpPortNum}}</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <!-- Widget: user widget style 2 -->
-                <div class="card card-widget widget-user-2">
-                    <!-- Add the bg color to the header using any of the bg-* classes -->
-                    <div class="widget-user-header bg-yellow">
-
-                        <!-- /.widget-user-image -->
-                        <h3>stream模块信息</h3>
-                    </div>
-                    <div class="card-footer p-1">
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    Server <span class="pull-right label bg-yellow">{{.NgInfo.StreamSvrsNum}}</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    Port <span class="pull-right label bg-red">{{.NgInfo.StreamPortNum}}</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--http and stream 模块信息 start -->
 </section>
 <!-- /.content -->
