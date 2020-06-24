@@ -8,14 +8,6 @@ import (
 
 func init() {
 
-	//课程路由
-	/*	beego.Router("/course/index", &controllers.CourseController{}, "*:Index")
-		beego.Router("/course/datagrid", &controllers.CourseController{}, "Get,Post:DataGrid")
-		beego.Router("/course/edit/?:id", &controllers.CourseController{}, "Get,Post:Edit")
-		beego.Router("/course/delete", &controllers.CourseController{}, "Post:Delete")
-		beego.Router("/course/updateseq", &controllers.CourseController{}, "Post:UpdateSeq")
-		beego.Router("/course/uploadimage", &controllers.CourseController{}, "Post:UploadImage")*/
-
 	//用户角色路由
 	beego.Router("/role/index", &controllers.RoleController{}, "*:Index")
 	beego.Router("/role/datagrid", &controllers.RoleController{}, "Get,Post:DataGrid")
@@ -60,7 +52,9 @@ func init() {
 	beego.Router("/home/404", &controllers.HomeController{}, "*:Page404")
 	beego.Router("/home/error/?:error", &controllers.HomeController{}, "*:Error")
 
+	// 系统信息页面
 	beego.Router("/", &controllers.StatisticalController{}, "*:Index")
+	beego.Router("/sys", &controllers.StatisticalController{}, "Get:Bifrost")
 
 	// 环境env
 	beego.Router("/env/index", &controllers.EnvController{}, "*:Index")

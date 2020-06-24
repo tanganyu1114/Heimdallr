@@ -23,7 +23,7 @@ func InitLogs() {
 	fileLogs = logs.NewLogger(10000)
 	level := beego.AppConfig.String("logs::level")
 	logname := beego.AppConfig.String("appname")
-	filename := "logs/" + logname + ".log"
+	filename := "\"logs/" + logname + ".log\""
 	fileLogs.SetLogger(logs.AdapterMultiFile, `{"filename":`+filename+`,
 		"separate":["emergency", "alert", "critical", "error", "warning", "notice", "info", "debug"],
 		"level":`+level+`,
