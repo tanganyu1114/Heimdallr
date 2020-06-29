@@ -19,11 +19,11 @@ type StatisticsResult struct {
 }
 
 type StatisticsMsg struct {
-	HttpPorts     []int    `json:"httpPorts, omitempty"`
-	HttpSvrNames  []string `json:"httpSvrNames, omitempty"`
-	HttpSvrsNum   int      `json:"httpSvrsNum, omitempty"`
-	StreamPorts   []int    `json:"streamPorts, omitempty"`
-	StreamSvrsNum int      `json:"streamSvrsNum, omitempty"`
+	HttpPorts     []int            `json:"httpPorts, omitempty"`
+	HttpSvrs      map[string][]int `json:"httpSvrs, omitempty"`
+	HttpSvrsNum   int              `json:"httpSvrsNum, omitempty"`
+	StreamPorts   []int            `json:"streamPorts, omitempty"`
+	StreamSvrsNum int              `json:"streamSvrsNum, omitempty"`
 }
 
 func GetDetail(m *Env) *string {

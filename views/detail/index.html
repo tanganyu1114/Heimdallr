@@ -30,12 +30,12 @@
                 <div class="card-footer p-1">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="#" class="nav-link" title="Server详情" onclick="HttpServerFun()">
                                 Server <span class="pull-right label bg-blue">{{.NgInfo.HttpSvrsNum}}</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="#" class="nav-link" title="端口详情" onclick="HttpPortFun()">
                                 Port <span class="pull-right label bg-green">{{.NgInfo.HttpPortNum}}</span>
                             </a>
                         </li>
@@ -55,7 +55,7 @@
                 <div class="card-footer p-1">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="#" class="nav-link" onclick="StreamFun()">
                                 Server <span class="pull-right label bg-yellow">{{.NgInfo.StreamSvrsNum}}</span>
                             </a>
                         </li>

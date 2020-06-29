@@ -23,7 +23,7 @@ func (c *DetailController) confInfo(m *models.Env) {
 	nginfo := map[string]interface{}{
 		"HttpPorts":     s.HttpPorts,
 		"HttpPortNum":   len(s.HttpPorts),
-		"HttpSvrNames":  s.HttpSvrNames,
+		"HttpSvrs":      s.HttpSvrs,
 		"HttpSvrsNum":   s.HttpSvrsNum,
 		"StreamPorts":   s.HttpPorts,
 		"StreamPortNum": len(s.StreamPorts),
@@ -48,5 +48,25 @@ func (c *DetailController) Index() {
 	c.LayoutSections = make(map[string]string)
 	c.LayoutSections["headcssjs"] = "detail/index_headcssjs.html"
 	c.LayoutSections["footerjs"] = "detail/index_footerjs.html"
+
+}
+
+func (c *DetailController) HttpServer() {
+	m, b := c.EnvCookie()
+	if b {
+		c.confInfo(m)
+	}
+	c.setTpl("detail/http_server.html", "shared/layout_pullbox.html")
+}
+
+func (c *DetailController) HttpPort() {
+	m, b := c.EnvCookie()
+	if b {
+		c.confInfo(m)
+	}
+	c.setTpl("detail/http_port.html", "shared/layout_pullbox.html")
+}
+
+func (c *DetailController) Stream() {
 
 }

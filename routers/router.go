@@ -54,7 +54,9 @@ func init() {
 
 	// 系统信息页面
 	beego.Router("/", &controllers.StatisticalController{}, "*:Index")
-	beego.Router("/sys", &controllers.StatisticalController{}, "Get:Bifrost")
+	beego.Router("/statistical/index", &controllers.StatisticalController{}, "*:Index")
+	beego.Router("/statistical/bifrost", &controllers.StatisticalController{}, "Get:Bifrost")
+	beego.Router("/Statistical/sysinfo", &controllers.StatisticalController{}, "Get:SysInfo")
 
 	// 环境env
 	beego.Router("/env/index", &controllers.EnvController{}, "*:Index")
@@ -62,10 +64,9 @@ func init() {
 	beego.Router("/env/edit/?:id", &controllers.EnvController{}, "Get,Post:Edit")
 	beego.Router("/env/delete", &controllers.EnvController{}, "Post:Delete")
 
-	// nginx 信息统计页面
-	beego.Router("nga/index", &controllers.StatisticalController{}, "*:Index")
-
 	// nginx 信息详情页面
-	beego.Router("nga/detail", &controllers.DetailController{}, "*:Index")
+	beego.Router("/detail/index", &controllers.DetailController{}, "*:Index")
+	beego.Router("/detail/httpserver", &controllers.DetailController{}, "Get:HttpServer")
+	beego.Router("/detail/httpport", &controllers.DetailController{}, "Get:HttpPort")
 
 }

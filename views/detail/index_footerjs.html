@@ -19,4 +19,61 @@ hljs.initLineNumbersOnLoad();
             "overflow-y":"auto"
         })
     });
+
+    function HttpServerFun() {
+        var url = '{{ urlfor "DetailController.HttpServer"}}'
+        layer.open({
+            type: 2,
+            title: "Server信息展示",
+            shadeClose: false,
+            shade: 0.2,
+            maxmin: true,
+            shift: 1,
+            area: ['1000px', '600px'],
+            content: url,
+            btn: ['保存', '关闭'],
+            yes: function (index, layero) {
+                var iframeWin = window[layero.find('iframe')[0]['name']];
+                iframeWin.FormSubmit();
+            }
+        });
+    }
+
+    function HttpPortFun() {
+        var url = '{{ urlfor "DetailController.HttpPort"}}'
+        layer.open({
+            type: 2,
+            title: "Server信息展示",
+            shadeClose: false,
+            shade: 0.2,
+            maxmin: true,
+            shift: 1,
+            area: ['1000px', '600px'],
+            content: url,
+            btn: ['保存', '关闭'],
+            yes: function (index, layero) {
+                var iframeWin = window[layero.find('iframe')[0]['name']];
+                iframeWin.FormSubmit();
+            }
+        });
+    }
+
+    function StreamFun() {
+        var url = '{{ urlfor "DetailController.Stream"}}'
+        layer.open({
+            type: 2,
+            title: "Stream servername信息展示",
+            shadeClose: false,
+            shade: 0.2,
+            maxmin: true,
+            shift: 1,
+            area: ['1000px', '600px'],
+            content: url,
+            btn: ['保存', '关闭'],
+            yes: function (index, layero) {
+                var iframeWin = window[layero.find('iframe')[0]['name']];
+                iframeWin.FormSubmit();
+            }
+        });
+    }
 </script>

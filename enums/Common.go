@@ -14,3 +14,5 @@ const (
 	Disabled
 	Enabled
 )
+
+const Heimdallr_Version = "v0.0.1"

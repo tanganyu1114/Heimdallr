@@ -1,0 +1,9 @@
+<!--弹窗显示已使用的端口号-->
+<div class="row">
+    <p style="padding-left: 20px">当前已使用端口数: {{.NgInfo.HttpPortNum}}</p>
+    <ul>
+        {{range .NgInfo.HttpPorts}}
+            <li class="col-md-3">{{.}}</li>
+        {{end}}
+    </ul>
+</div>

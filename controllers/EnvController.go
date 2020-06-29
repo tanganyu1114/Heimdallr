@@ -70,10 +70,7 @@ func (c *EnvController) Edit() {
 			c.pageError("数据无效，请刷新后重试")
 		}
 	}
-	//m,err:=models.EnvOne(Id)
-	//if err != nil {
-	//	c.pageError("数据无效，请刷新后重试")
-	//}
+
 	c.Data["m"] = m
 	c.setTpl("env/edit.html", "shared/layout_pullbox.html")
 	c.LayoutSections = make(map[string]string)

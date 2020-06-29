@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"Heimdallr/enums"
 	"Heimdallr/models"
 	"fmt"
 	"github.com/astaxie/beego/logs"
@@ -34,38 +35,37 @@ func (c *StatisticalController) Prepare() {
 }
 
 // index page infomation
-func (c *StatisticalController) sysInfo() {
+func (c *StatisticalController) SysInfo() {
 	cpupct, err := cpu.Percent(time.Second, false)
 	if err != nil {
-		c.Ctx.WriteString(err.Error())
+		logs.Error(err)
 	}
 	mem, err := mem.VirtualMemory()
 	if err != nil {
-		c.Ctx.WriteString(err.Error())
+		logs.Error(err)
 	}
 	diskinfo, err := disk.Usage("/")
 	if err != nil {
-		c.Ctx.WriteString(err.Error())
+		logs.Error(err)
 	}
 	platform, _, version, err := host.PlatformInformation()
 	if err != nil {
-		c.Ctx.WriteString(err.Error())
+		logs.Error(err)
 	}
 	curTime := time.Now().Format("2006/01/02 15:04:05")
 	info := map[string]interface{}{
-		"Cpu":    fmt.Sprintf("%.2f", cpupct[0]),
-		"Mem":    fmt.Sprintf("%.2f", mem.UsedPercent),
-		"Disk":   fmt.Sprintf("%.2f", diskinfo.UsedPercent),
-		"Timer":  curTime,
-		"Osinfo": platform + "  " + version,
+		"Cpu":     fmt.Sprintf("%.2f", cpupct[0]),
+		"Mem":     fmt.Sprintf("%.2f", mem.UsedPercent),
+		"Disk":    fmt.Sprintf("%.2f", diskinfo.UsedPercent),
+		"Timer":   curTime,
+		"Osinfo":  platform + "  " + version,
+		"Version": enums.Heimdallr_Version,
 	}
-	c.Data["Info"] = info
+	c.Data["json"] = info
+	c.ServeJSON()
 }
 
 func (c *StatisticalController) Index() {
-
-	// 获取系统信息
-	c.sysInfo()
 
 	c.Data["activeSidebarUrl"] = c.URLFor(c.controllerName + "." + c.actionName)
 	c.setTpl()
@@ -81,18 +81,6 @@ func (c *StatisticalController) Bifrost() {
 	var p models.EnvQueryParam
 
 	data, _ := models.EnvPageList(&p)
-
-	//var res = make([]*BifrostStatus, len(data))
-
-	/*	for i, env := range data {
-		res[i].Enable = env.Status
-		res[i].Env = env.EnvName
-		if env.Status == 1 {
-			res[i].StatusMsg = models.GetStatus(env)
-		} else {
-			res[i].StatusMsg = nil
-		}
-	}*/
 
 	res := make([]*BifrostStatus, 0)
 	for i := 0; i < len(data); i++ {

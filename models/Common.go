@@ -1,6 +1,8 @@
 package models
 
-import "Heimdallr/enums"
+import (
+	"Heimdallr/enums"
+)
 
 // JsonResult 用于返回ajax请求的基类
 type JsonResult struct {

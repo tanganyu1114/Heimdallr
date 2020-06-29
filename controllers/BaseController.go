@@ -160,6 +160,7 @@ func (c *BaseController) setTpl(template ...string) {
 		actionName := strings.ToLower(c.actionName)
 		tplName = ctrlName + "/" + actionName + ".html"
 	}
+	c.Data["Version"] = enums.Heimdallr_Version
 	c.Layout = layout
 	c.TplName = tplName
 }
