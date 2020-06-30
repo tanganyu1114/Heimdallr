@@ -37,6 +37,7 @@ func GetDetail(m *Env) *string {
 	b, err := req.Bytes()
 	if err != nil {
 		logs.Error(err)
+		n.Message = "获取配置信息详情失败,错误信息请查看日志文件"
 	}
 	json.Unmarshal(b, &n)
 	return &n.Message

@@ -24,17 +24,16 @@ hljs.initLineNumbersOnLoad();
         var url = '{{ urlfor "DetailController.HttpServer"}}'
         layer.open({
             type: 2,
-            title: "Server信息展示",
+            title: "HttpServer信息展示",
             shadeClose: false,
             shade: 0.2,
             maxmin: true,
             shift: 1,
             area: ['1000px', '600px'],
             content: url,
-            btn: ['保存', '关闭'],
-            yes: function (index, layero) {
-                var iframeWin = window[layero.find('iframe')[0]['name']];
-                iframeWin.FormSubmit();
+            btn: ['关闭'],
+            cancel: function () {
+
             }
         });
     }
@@ -43,36 +42,34 @@ hljs.initLineNumbersOnLoad();
         var url = '{{ urlfor "DetailController.HttpPort"}}'
         layer.open({
             type: 2,
-            title: "Server信息展示",
+            title: "HttpPort信息展示",
             shadeClose: false,
             shade: 0.2,
             maxmin: true,
             shift: 1,
             area: ['1000px', '600px'],
             content: url,
-            btn: ['保存', '关闭'],
-            yes: function (index, layero) {
-                var iframeWin = window[layero.find('iframe')[0]['name']];
-                iframeWin.FormSubmit();
+            btn: ['关闭'],
+            cancel: function () {
+
             }
         });
     }
 
-    function StreamFun() {
-        var url = '{{ urlfor "DetailController.Stream"}}'
+    function StreamPortFun() {
+        var url = '{{ urlfor "DetailController.StreamPort"}}'
         layer.open({
             type: 2,
-            title: "Stream servername信息展示",
+            title: "StreamPort信息展示",
             shadeClose: false,
             shade: 0.2,
             maxmin: true,
             shift: 1,
             area: ['1000px', '600px'],
             content: url,
-            btn: ['保存', '关闭'],
-            yes: function (index, layero) {
-                var iframeWin = window[layero.find('iframe')[0]['name']];
-                iframeWin.FormSubmit();
+            btn: ['关闭'],
+            cancel: function () {
+
             }
         });
     }

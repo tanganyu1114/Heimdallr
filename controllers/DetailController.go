@@ -25,7 +25,7 @@ func (c *DetailController) confInfo(m *models.Env) {
 		"HttpPortNum":   len(s.HttpPorts),
 		"HttpSvrs":      s.HttpSvrs,
 		"HttpSvrsNum":   s.HttpSvrsNum,
-		"StreamPorts":   s.HttpPorts,
+		"StreamPorts":   s.StreamPorts,
 		"StreamPortNum": len(s.StreamPorts),
 		"StreamSvrsNum": s.StreamSvrsNum,
 	}
@@ -67,6 +67,10 @@ func (c *DetailController) HttpPort() {
 	c.setTpl("detail/http_port.html", "shared/layout_pullbox.html")
 }
 
-func (c *DetailController) Stream() {
-
+func (c *DetailController) StreamPort() {
+	m, b := c.EnvCookie()
+	if b {
+		c.confInfo(m)
+	}
+	c.setTpl("detail/stream_port.html", "shared/layout_pullbox.html")
 }

@@ -1,9 +1,13 @@
 <!--http弹出显示使用的servername和端口 -->
 <div class="row">
-    <div class="row">
-    <h4 class="col-md-3 col-md-offset-3">server_name总数: {{.NgInfo.HttpSvrs|len}}</h4>
-    <h4 class="col-md-3">server总数: {{.NgInfo.HttpSvrsNum}}</h4>
-    </div>
+    <ul>
+        <li>
+            server_name总数: {{.NgInfo.HttpSvrs|len}}
+        </li>
+        <li>
+            server总数: {{.NgInfo.HttpSvrsNum}}
+        </li>
+    </ul>
     {{ range $i,$v := .NgInfo.HttpSvrs}}
     <div class="col-md-6">
         <div class="box box-default box-solid collapsed-box">

@@ -15,4 +15,4 @@ const (
 	Enabled
 )
 
-const Heimdallr_Version = "v0.0.1"
+const Heimdallr_Version = "v1.0.0-alpha"

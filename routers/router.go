@@ -68,5 +68,6 @@ func init() {
 	beego.Router("/detail/index", &controllers.DetailController{}, "*:Index")
 	beego.Router("/detail/httpserver", &controllers.DetailController{}, "Get:HttpServer")
 	beego.Router("/detail/httpport", &controllers.DetailController{}, "Get:HttpPort")
+	beego.Router("/detail/streamport", &controllers.DetailController{}, "Get:StreamPort")
 
 }
