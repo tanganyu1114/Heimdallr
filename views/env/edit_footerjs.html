@@ -14,6 +14,11 @@
         var $thisForm = $('#thisForm');
         $thisForm.sdvalidate({
             rules: {
+                Seq: {
+                  maxlength: 4,
+                  digits: true,
+                  required: true,
+                },
                 EnvName: {
                     maxlength: 8,
                     required: true
@@ -28,6 +33,7 @@
                 },
                 Port: {
                     maxlength: 5,
+                    digits: true,
                     required: true,
                 },
                 Token: {

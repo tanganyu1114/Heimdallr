@@ -15,6 +15,7 @@ type EnvQueryParam struct {
 
 type Env struct {
 	Id           int
+	Seq          int
 	EnvName      string
 	EnvDescript  string
 	Ipaddr       string
@@ -22,6 +23,14 @@ type Env struct {
 	Token        string
 	RelationPath string
 	Status       int
+}
+
+type EnvBtn struct {
+	Id          int
+	Seq         int
+	EnvName     string
+	EnvDescript string
+	Status      int
 }
 
 // RolePageList 获取分页数据
@@ -33,6 +42,8 @@ func EnvPageList(params *EnvQueryParam) ([]*Env, int64) {
 	switch params.Sort {
 	case "Id":
 		sortorder = "Id"
+	case "Seq":
+		sortorder = "Seq"
 	}
 	if params.Order == "desc" {
 		sortorder = "-" + sortorder

@@ -55,6 +55,36 @@ func (c *EnvController) DataGrid() {
 	c.ServeJSON()
 }
 
+// 框架aside按钮
+func (c *EnvController) Aside() {
+	var res []*models.EnvBtn
+	params := &models.EnvQueryParam{
+		BaseQueryParam: models.BaseQueryParam{
+			Limit: -1,
+			Sort:  "Seq",
+			Order: "asc",
+		},
+		EnvLike: "",
+	}
+	data, total := models.EnvPageList(params)
+	for _, datum := range data {
+		res = append(res, &models.EnvBtn{
+			Id:          datum.Id,
+			Seq:         datum.Seq,
+			EnvName:     datum.EnvName,
+			EnvDescript: datum.EnvDescript,
+			Status:      datum.Status,
+		})
+	}
+	//定义返回的数据结构
+	result := make(map[string]interface{})
+	result["total"] = total
+	result["rows"] = res
+	c.Data["json"] = result
+	c.ServeJSON()
+
+}
+
 // Edit 添加 编辑 页面
 func (c *EnvController) Edit() {
 	//如果是Post请求，则由Save处理

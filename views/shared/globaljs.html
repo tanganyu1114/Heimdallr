@@ -23,8 +23,8 @@
 <script type="text/javascript">
     $.cookie.raw = true;
     $(function () {
-        $.post({{urlfor "EnvController.DataGrid"}},function (res) {
-            //console.log(res["rows"])
+        $.post({{urlfor "EnvController.Aside"}},function (res) {
+            console.log(res["rows"])
             $.each(res["rows"],function (i,item) {
                 if (item["Status"] == true) {
                     var btns = $("<button></button>").attr({
