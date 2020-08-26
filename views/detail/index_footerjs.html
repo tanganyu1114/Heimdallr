@@ -1,6 +1,8 @@
 <link rel="stylesheet" href="/static/heimdallr/js/highlight/github.css">
 <script src="/static/heimdallr/js/highlight/highlight.pack.js"></script>
 <script src="/static/heimdallr/js/highlight/highlightjs-line-numbers.min.js"></script>
+<!-- select2 -->
+<script src="/static/plugins/select2/dist/js/select2.full.min.js"></script>
 {{/*<script src="/static/heimdallr/js/highlight/highlight.line-numbers.js"></script>*/}}
 <script>
 /*    hljs.initHighlightingOnLoad();
@@ -12,13 +14,53 @@ hljs.initLineNumbersOnLoad();
 <!-- 定义scroll高度 -->
 <script>
     var hi = $(window).height()
+    var envmap = new Map()
     $(function () {
+        // 初始化话配置信息窗口大小
         s = Math.round(hi * 0.75)
         $("code").css({
-            "height":s,
-            "overflow-y":"auto"
+            "height": s,
+            "overflow-y": "auto"
+        });
+        //Initialize Select2 Elements
+        $('#envlist').select2();
+       // $('#envlist').val(null).trigger('change');// 加载静态框时先清空。
+        $.ajax({
+            url: {{urlfor "EnvController.Select2"}},
+            type: 'get',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                //params的自带参数类型由queryParamsType决定
+                params.EnvLike = params.term;
+                return params;
+            },
+            success: function (data) {
+                var jsonData = data['rows'];
+                console.log(jsonData);
+                $.each(jsonData, function (i) {
+                    // create the option and append to Select2
+                    var option = new Option(jsonData[i].EnvName, jsonData[i].Id, true, true);
+                    envmap.set(jsonData[i].EnvName,jsonData[i].EnvDescript)
+                    $('#envlist').append(option);
+                });
+                if ($.cookie('env') === undefined) {
+                    $('#envlist').val(null).trigger("change");
+                }else {
+                    $('#envlist').val(decodeURI($.cookie('env_id'))).trigger("change");
+                    $('#env_describe').html("环境名:"+decodeURI($.cookie('env'))+"&emsp;&emsp;环境描述:"+envmap.get(decodeURI($.cookie('env'))))
+                }
+
+            },
         })
-    });
+
+        $(".select2").on("select2:select",function(e){
+            $.cookie('env',encodeURI(e.params.data.text),{ expires: 7, path: '/' });
+            $.cookie('env_id',encodeURI(e.params.data.id),{ expires: 7, path: '/' });
+            window.location.reload()
+        })
+
+    })
 
     function HttpServerFun() {
         var url = '{{ urlfor "DetailController.HttpServer"}}'
@@ -73,4 +115,6 @@ hljs.initLineNumbersOnLoad();
             }
         });
     }
+
+
 </script>

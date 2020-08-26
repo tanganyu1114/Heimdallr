@@ -33,6 +33,13 @@ type EnvBtn struct {
 	Status      int
 }
 
+type EnvSelect2 struct {
+	Id          int
+	EnvName     string
+	EnvDescript string
+	Status      int
+}
+
 // RolePageList 获取分页数据
 func EnvPageList(params *EnvQueryParam) ([]*Env, int64) {
 	query := orm.NewOrm().QueryTable(EnvTBName())

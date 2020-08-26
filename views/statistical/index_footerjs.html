@@ -1,10 +1,11 @@
 <script type="text/javascript">
 
+    var envidmap = new Map()
     $(function () {
 
         // 加载Heimdallr服务器系统状态信息
         $.get({{urlfor "StatisticalController.SysInfo"}},function (res) {
-            console.log(res)
+            //console.log(res)
             // cpu颜色
             if (parseFloat(res["Cpu"]) <= 70 ) { COLOR_CPU = "bg-green"}
             if ( 70 < parseFloat(res["Cpu"]) && parseFloat(res["Cpu"]) <= 90) { COLOR_CPU = "bg-yellow" }
@@ -32,9 +33,12 @@
 
         // 根据环境自动加载各个环境的bifrost状态
         $.get({{urlfor "StatisticalController.Bifrost"}},function (res) {
+            //console.log(res)
             $.each(res,function (i,item) {
+                envidmap.set(item["Env"],item["Id"])
                 if (item["Enable"] === 1) {
                     COLOR = "bg-aqua-active"
+                    ENVNAME = item["Env"]
                     if (item["status"] === "TimeOut") {item["Env"]+="(连接超时)"}
                     // cpu颜色
                     if (parseFloat(item["message"]["cpu"]) <= 70 ) { COLOR_CPU = "bg-green"}
@@ -50,7 +54,7 @@
                     if (item["message"]["disk"] > 90) { COLOR_DISK = "bg-red" }
 
                     var el = $('<div class="col-md-3">\n<div class="card card-widget widget-user-2">\n' +
-                        '<div class="widget-user-header ' + COLOR + '">\n' +
+                        '<div class="widget-user-header ' + COLOR + '"name=agent id=' + ENVNAME+'>\n' +
                         '<h3>Bifrost: '+item["Env"]+'</h3>\n\<p>版本: '+item["message"]["bifrost_version"]+'</p></div>\n' +
                         '<div class="card-footer p-1">\n<ul class="nav flex-column">\n' +
                         '<li class="nav-item">\n<a href="#" class="nav-link">\n时间 <span id="time" class="pull-right label bg-blue ">'+item["message"]["time"]+'</span>\n</a>\n</li>\n' +
@@ -76,6 +80,13 @@
 
             })
         });
+        //document.getElementById(agent)
+        $('#sysinfobox').on("click","div[name=agent]",
+        function () {
+            $.cookie('env',encodeURI($(this).attr('id')),{ expires: 7, path: '/' });
+            $.cookie('env_id',encodeURI(envidmap.get($(this).attr('id'))),{ expires: 7, path: '/' });
+            window.location.href={{urlfor "DetailController.Index"}}
+        })
     })
 </script>
 <!-- 显示nginxconf配置统计信息 -->

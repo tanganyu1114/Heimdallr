@@ -20,6 +20,7 @@ type StatisticalController struct {
 type BifrostStatus struct {
 	Enable int
 	Env    string
+	Id     int
 	*models.StatusMsg
 }
 
@@ -86,6 +87,7 @@ func (c *StatisticalController) Bifrost() {
 	for i := 0; i < len(data); i++ {
 		res = append(res, &BifrostStatus{
 			Enable: data[i].Status,
+			Id:     data[i].Id,
 			Env:    data[i].EnvName,
 			StatusMsg: func() *models.StatusMsg {
 				if data[i].Status == 1 {

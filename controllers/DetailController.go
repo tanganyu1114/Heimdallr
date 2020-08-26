@@ -41,7 +41,7 @@ func (c *DetailController) Index() {
 	m, b := c.EnvCookie()
 	if b {
 		c.confInfo(m)
-		c.Data["Content"] = *models.GetDetail(m)
+		c.Data["Content"] = *models.GetDetail(m, "string")
 	}
 
 	c.setTpl()

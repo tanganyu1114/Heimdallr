@@ -1,0 +1,45 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Global全局配置
+        <small>配置nginx conf全局块</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li>
+            <a href="{{urlfor "StatisticalController.Index"}}">
+                <i class="fa fa-dashboard"></i> 首页</a>
+        </li>
+        <li class="active">Global全局配置</li>
+    </ol>
+</section>
+<!-- Content Header (Page header) -->
+<section class="content container-fluid">
+    <!-- 页面内容开始 -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-solid">
+                <div class="box-body">
+                    <div class="btn-group" id="toolbar">
+                        {{ if .canEdit}}
+                            <button class="btn btn-info" href="javascript:;" onclick="EditFun(0)">
+                                <i class="fa fa-plus"></i> 添加</button>
+                        {{end}}
+                        {{ if .canDelete}}
+                            <button class="btn btn-danger table-btn-check-enable" disabled onclick="DeleteFun()">
+                                <i class="fa fa-trash"></i> 删除
+                            </button>
+                        {{end}}
+                        {{ if .canSave}}
+                            <button class="btn btn-success table-btn-save-enable" disabled onclick="SaveFun()">
+                                <i class="fa fa-floppy-o"></i> 保存
+                            </button>
+                        {{end}}
+                    </div>
+                    <table id="dataGrid"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 页面内容结束 -->
+</section>
+<!-- /.content -->

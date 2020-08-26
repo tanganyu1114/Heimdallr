@@ -26,22 +26,22 @@ type StatisticsMsg struct {
 	StreamSvrsNum int              `json:"streamSvrsNum, omitempty"`
 }
 
-func GetDetail(m *Env) *string {
+func GetDetail(m *Env, t string) *string {
 	var n NgConfResult
 	url := fmt.Sprintf("http://%s:%d/%s", m.Ipaddr, m.Port, m.RelationPath)
 
 	req := httplib.Get(url).SetTimeout(2*time.Second, 3*time.Second)
 	req.Param("token", m.Token)
-	req.Param("type", "string")
+	req.Param("type", t)
 
 	b, err := req.Bytes()
 	if err != nil {
 		logs.Error(err)
 		n.Message = "获取配置信息详情失败,错误信息请查看日志文件"
 	}
+
 	json.Unmarshal(b, &n)
 	return &n.Message
-
 }
 
 func GetStatistics(m *Env) *StatisticsMsg {

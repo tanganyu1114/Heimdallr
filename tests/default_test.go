@@ -1,10 +1,9 @@
 package test
 
 import (
+	"fmt"
 	"net/http"
 	"net/http/httptest"
-	"path/filepath"
-	"runtime"
 	"testing"
 
 	_ "Heimdallr/routers"
@@ -14,9 +13,7 @@ import (
 )
 
 func init() {
-	_, file, _, _ := runtime.Caller(1)
-	apppath, _ := filepath.Abs(filepath.Dir(filepath.Join(file, ".."+string(filepath.Separator))))
-	beego.TestBeegoInit(apppath)
+
 }
 
 // TestBeego is a sample to run an endpoint test
@@ -35,4 +32,9 @@ func TestBeego(t *testing.T) {
 			So(w.Body.Len(), ShouldBeGreaterThan, 0)
 		})
 	})
+}
+
+func TestStr(t *testing.T) {
+	var str = "# adasdas dasd ;"
+
 }

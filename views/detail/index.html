@@ -13,11 +13,22 @@
     </ol>
 </section>
 <section class="content container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <select class="form-control select2" id="envlist" data-placeholder="请选择环境" style="width: 100%;">
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label id="env_describe"></label>
+        </div>
+    </div>
 
-    <div class="row col-md-8">
+    <div class="row col-md-9">
     <pre id="pre"><code class="nginx">{{.Content}}</code> </pre>
     </div>
-    <div class="row col-md-3 col-md-offset-1">
+    <div class="row col-md-2 col-md-offset-1">
         <div class="row">
             <!-- Widget: user widget style 2 -->
             <div class="card card-widget widget-user-2">

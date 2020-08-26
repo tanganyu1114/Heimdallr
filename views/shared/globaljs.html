@@ -19,41 +19,44 @@
 <script src="/static/sdtheme/scripts/sdtheme.js"></script>
 <!-- 当前产品初始化 -->
 <script src="/static/product/scripts/rms.js"></script>
+
 <!-- 自动生成环境选择按钮 -->
 <script type="text/javascript">
     $.cookie.raw = true;
     $(function () {
-        $.post({{urlfor "EnvController.Aside"}},function (res) {
-            console.log(res["rows"])
-            $.each(res["rows"],function (i,item) {
-                if (item["Status"] == true) {
-                    var btns = $("<button></button>").attr({
-                        type: "button",
-                        name: "env_one",
-                        class: "btn btn-block btn-primary",
-                        id: item["EnvName"],
-                        title: item["EnvDescript"],
-                    }).text(item["EnvName"])
-                    $("#envs").append(btns)
-                }
-            })
-        });
+
+
+        {{/*$.post({{urlfor "EnvController.Aside"}},function (res) {*/}}
+        {{/*    console.log(res["rows"])*/}}
+        {{/*    $.each(res["rows"],function (i,item) {*/}}
+        {{/*        if (item["Status"] == true) {*/}}
+        {{/*            var btns = $("<button></button>").attr({*/}}
+        {{/*                type: "button",*/}}
+        {{/*                name: "env_one",*/}}
+        {{/*                class: "btn btn-block btn-primary",*/}}
+        {{/*                id: item["EnvName"],*/}}
+        {{/*                title: item["EnvDescript"],*/}}
+        {{/*            }).text(item["EnvName"])*/}}
+        {{/*            $("#envs").append(btns)*/}}
+        {{/*        }*/}}
+        {{/*    })*/}}
+        {{/*});*/}}
 
         // 环境按钮触发
-        $("#envs").on("click","button[name=env_one]",
-            function () {
-                $("button[name=env_one]").removeClass("active");
-                $(this).addClass("active");
-                $.cookie('env',encodeURI($(this).attr('id')),{ expires: 7, path: '/' });
-                $('#envname').text(this.id)
-                location.reload()
-            }
-        );
-        if ($.cookie('env') === undefined) {
-            $.cookie('env',encodeURI("环境选择"),{ expires: 7, path: '/' });
-            $('#envname').text("环境选择");
-        }else {
-            $('#envname').text(decodeURI($.cookie('env')))
-        };
+        // $("#envs").on("click","button[name=env_one]",
+        //     function () {
+        //         $("button[name=env_one]").removeClass("active");
+        //         $(this).addClass("active");
+        //         $.cookie('env',encodeURI($(this).attr('id')),{ expires: 7, path: '/' });
+        //         $('#envname').text(this.id)
+        //         location.reload()
+        //     }
+        // );
+        // if ($.cookie('env') === undefined) {
+        //     $.cookie('env',encodeURI("环境选择"),{ expires: 7, path: '/' });
+        //     $('#envname').text("环境选择");
+        // }else {
+        //     $('#envname').text(decodeURI($.cookie('env')))
+        // };
     })
 </script>

@@ -63,12 +63,19 @@ func init() {
 	beego.Router("/env/datagrid", &controllers.EnvController{}, "Get,Post:DataGrid")
 	beego.Router("/env/edit/?:id", &controllers.EnvController{}, "Get,Post:Edit")
 	beego.Router("/env/delete", &controllers.EnvController{}, "Post:Delete")
-	beego.Router("/env/aside", &controllers.EnvController{}, "Get,Post:Aside")
+	//beego.Router("/env/aside", &controllers.EnvController{}, "Get,Post:Aside")
+	beego.Router("/env/list", &controllers.EnvController{}, "Get,Post:Select2")
 
 	// nginx 信息详情页面
 	beego.Router("/detail/index", &controllers.DetailController{}, "*:Index")
 	beego.Router("/detail/httpserver", &controllers.DetailController{}, "Get:HttpServer")
 	beego.Router("/detail/httpport", &controllers.DetailController{}, "Get:HttpPort")
 	beego.Router("/detail/streamport", &controllers.DetailController{}, "Get:StreamPort")
+
+	// nginx 配置
+	beego.Router("/settings/global/index", &controllers.NgglobalController{}, "*:Index")
+	beego.Router("/settings/global/datagrid", &controllers.NgglobalController{}, "Get,Post:DataGrid")
+	beego.Router("/settings/global/edit/?:id", &controllers.NgglobalController{}, "Get,Post:Edit")
+	beego.Router("/settings/global/delete", &controllers.NgglobalController{}, "Post:Delete")
 
 }
